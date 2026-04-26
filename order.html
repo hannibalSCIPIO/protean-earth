@@ -11,6 +11,29 @@
         .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
         .form-group input, .form-group select { width: 100%; padding: 0.5rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
         .form-group small { display: block; margin-top: 0.25rem; color: #666; }
+        
+        .payment-options { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
+        .payment-option {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .payment-option:hover { border-color: #ccc; }
+        .payment-option.selected { border-color: #008CFF; background: #f0f7ff; }
+        .payment-option img { width: 40px; height: 40px; margin-bottom: 4px; }
+        .payment-option span { display: block; font-size: 12px; font-weight: 600; }
+        
+        .venmo-btn { background: #008CFF; color: white; }
+        .cashapp-btn { background: #FFDC00; color: black; }
+        .stripe-btn { background: #635BFF; color: white; }
+        
+        .button { width: 100%; padding: 14px; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px; }
+        .button:disabled { opacity: 0.6; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -28,13 +51,29 @@
     <section class="hero">
         <div class="container">
             <h1>Checkout</h1>
-            <p>Complete your order securely with Stripe.</p>
+            <p>Choose your preferred payment method.</p>
         </div>
     </section>
 
     <section class="container" style="margin-top: 2rem;">
         <div class="card" style="max-width: 500px; margin: 0 auto;">
             <form id="checkout-form">
+                <div class="form-group">
+                    <label>Select Payment Method</label>
+                    <div class="payment-options">
+                        <div class="payment-option selected" data-method="stripe" onclick="selectPayment('stripe')">
+                            <span>💳 Card</span>
+                        </div>
+                        <div class="payment-option" data-method="venmo" onclick="selectPayment('venmo')">
+                            <span>📱 Venmo</span>
+                        </div>
+                        <div class="payment-option" data-method="cashapp" onclick="selectPayment('cashapp')">
+                            <span>💵 CashApp</span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="payment-method" value="stripe" />
+                </div>
+
                 <div class="form-group">
                     <label for="product">Select Magnet Pack</label>
                     <select id="product" name="product" required>
@@ -47,7 +86,7 @@
                 <div class="form-group">
                     <label for="phone">Your Phone Number (reference)</label>
                     <input type="tel" id="phone" name="phone" placeholder="e.g. 3035551234" required pattern="[0-9]{10,}" title="Enter your phone number (digits only, no dashes)" />
-                    <small>This will be your reference number. We'll also use it to match your payment.</small>
+                    <small>This will be your reference number.</small>
                 </div>
 
                 <div class="form-group">
@@ -55,9 +94,22 @@
                     <input type="email" id="email" name="email" placeholder="you@example.com" required />
                 </div>
 
-                <button type="submit" class="button" id="pay-btn">Pay with Card</button>
+                <button type="submit" class="button stripe-btn" id="pay-btn">Pay with Card</button>
             </form>
             <div id="message" style="margin-top: 1rem;"></div>
+            
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #f5f5f5; border-radius: 8px; font-size: 13px;">
+                <strong>Payment Instructions:</strong>
+                <div id="venmo-instructions" style="display:none; margin-top: 8px;">
+                    <p>📱 Send <strong>$30</strong> (6-pack) or <strong>$50</strong> (12-pack) to <strong>@YOUR-VENMO-USERNAME</strong></p>
+                    <p>Include your phone <span id="venmo-ref"></span> as a note.</p>
+                </div>
+                <div id="cashapp-instructions" style="display:none; margin-top: 8px;">
+                    <p>💵 CashApp: <strong>$YOUR-CASHAPP-TAG</strong></p>
+                    <p>Send <strong>$30</strong> (6-pack) or <strong>$50</strong> (12-pack)</p>
+                    <p>Include your phone <span id="cashapp-ref"></span> as a note.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -68,17 +120,50 @@
     </footer>
 
     <script>
-        // Pre‑select product from query parameter (e.g. ?product=square)
+        // Product prices for display
+        const prices = { '6pack': '$30', '12pack': '$50', 'single': '$12' };
+        
+        // YOUR VENMO USERNAME - UPDATE THIS!
+        const VENMO_USERNAME = 'YOUR-VENMO-USERNAME';
+        // YOUR CASHAPP TAG - UPDATE THIS!
+        const CASHAPP_TAG = '$YOUR-CASHAPP';
+        
+        function selectPayment(method) {
+            document.getElementById('payment-method').value = method;
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+            
+            const btn = document.getElementById('pay-btn');
+            const product = document.getElementById('product').value;
+            const amount = prices[product] || '$30';
+            
+            // Update button and instructions
+            document.getElementById('venmo-instructions').style.display = method === 'venmo' ? 'block' : 'none';
+            document.getElementById('cashapp-instructions').style.display = method === 'cashapp' ? 'block' : 'none';
+            
+            if (method === 'venmo') {
+                btn.textContent = `I'll pay with Venmo`;
+                btn.className = 'button venmo-btn';
+            } else if (method === 'cashapp') {
+                btn.textContent = `I'll pay with CashApp`;
+                btn.className = 'button cashapp-btn';
+            } else {
+                btn.textContent = 'Pay with Card';
+                btn.className = 'button stripe-btn';
+            }
+        }
+        
+        // Update reference when phone changes
+        document.getElementById('phone').addEventListener('input', function() {
+            document.getElementById('venmo-ref').textContent = this.value || '[your phone]';
+            document.getElementById('cashapp-ref').textContent = this.value || '[your phone]';
+        });
+
+        // Pre-select product from query parameter
         const params = new URLSearchParams(window.location.search);
         const productParam = params.get('product');
         if (productParam) {
-            const select = document.getElementById('product');
-            Array.from(select.options).some(opt => {
-                if (opt.value === productParam) {
-                    select.value = productParam;
-                    return true;
-                }
-            });
+            document.getElementById('product').value = productParam;
         }
 
         const form = document.getElementById('checkout-form');
@@ -86,10 +171,20 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const paymentMethod = document.getElementById('payment-method').value;
             const productId = document.getElementById('product').value;
-            const phone = document.getElementById('phone').value.replace(/\D/g, ''); // strip non-digits
+            const phone = document.getElementById('phone').value.replace(/\D/g, '');
             const email = document.getElementById('email').value;
 
+            if (paymentMethod === 'venmo' || paymentMethod === 'cashapp') {
+                // Show instructions for manual payment
+                messageDiv.innerHTML = '<p style="color: #008CFF;">📱 Please send payment via ' + 
+                    (paymentMethod === 'venmo' ? 'Venmo' : 'CashApp') + 
+                    ', then text us your confirmation. We\'ll confirm and ship!</p>';
+                return;
+            }
+
+            // Stripe checkout
             const payBtn = document.getElementById('pay-btn');
             payBtn.disabled = true;
             payBtn.textContent = 'Processing...';
