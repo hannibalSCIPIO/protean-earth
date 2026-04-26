@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Protean.earth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span>Free shipping on orders over $299</span>
+            <div class="top-links">
+                <a href="#">Track Order</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">PROTEAN</span>
+                    <span class="logo-dot">.earth</span>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by keyword, item # or model #">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="action-link">
+                    <span class="icon">📍</span>
+                    <span>Branch</span>
+                </a>
+                <a href="shop.html" class="action-link cart-link">
+                    <span class="icon">🛒</span>
+                    <span>Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="shop.html" class="active">All Products</a></li>
+                <li><a href="shop.html">Tools & Machining</a></li>
+                <li><a href="shop.html">Safety & Security</a></li>
+                <li><a href="shop.html">Electrical</a></li>
+                <li><a href="shop.html">Plumbing</a></li>
+                <li><a href="shop.html">HVAC</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Shop Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Shop All Products</h1>
+            <p>Industrial-grade equipment and supplies for professionals</p>
+        </div>
+    </section>
+
+    <!-- Shop Content -->
+    <section class="shop-content">
+        <div class="container">
+            <div class="shop-layout">
+                <!-- Sidebar -->
+                <aside class="shop-sidebar">
+                    <div class="filter-section">
+                        <h3>Categories</h3>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox"> Tools & Machining</label></li>
+                            <li><label><input type="checkbox"> Safety Equipment</label></li>
+                            <li><label><input type="checkbox"> Electrical</label></li>
+                            <li><label><input type="checkbox"> Plumbing</label></li>
+                            <li><label><input type="checkbox"> HVAC</label></li>
+                        </ul>
+                    </div>
+                    <div class="filter-section">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <input type="number" placeholder="Min" class="price-input">
+                            <span>-</span>
+                            <input type="number" placeholder="Max" class="price-input">
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <h3>Brand</h3>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox"> Protean</label></li>
+                            <li><label><input type="checkbox"> Industrial Pro</label></li>
+                            <li><label><input type="checkbox"> SafeGuard</label></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <div class="shop-products">
+                    <div class="shop-toolbar">
+                        <span>Showing 10 products</span>
+                        <select class="sort-select">
+                            <option>Sort by: Featured</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Name: A-Z</option>
+                        </select>
+                    </div>
+
+                    <div class="product-grid full-width">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-badge">Best Seller</div>
+                            <div class="product-image large">🔧</div>
+                            <h3>Industrial Wrench Set - 24 Piece</h3>
+                            <p class="description">Professional-grade chrome vanadium steel wrench set with organized carrying case.</p>
+                            <p class="sku">SKU: PRO-001</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (127)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$89.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Industrial Wrench Set', 89.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image large">⚡</div>
+                            <h3>Digital Multimeter Pro Series</h3>
+                            <p class="description">True RMS multimeter with auto-ranging, backlit display, and data hold function.</p>
+                            <p class="sku">SKU: PRO-002</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (89)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$149.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Digital Multimeter Pro', 149.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-badge sale">Sale</div>
+                            <div class="product-image large">🛡️</div>
+                            <h3>Safety Helmet System Pro</h3>
+                            <p class="description">ANSI-certified hard hat with 6-point suspension and accessory slots.</p>
+                            <p class="sku">SKU: PRO-003</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★☆ (234)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price"><span class="old-price">$79.99</span> $59.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Safety Helmet System', 59.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-image large">🔩</div>
+                            <h3>Stainless Steel Bolt Kit - 500pc</h3>
+                            <p class="description">Grade 304 stainless steel bolts, nuts, and washers in organized storage case.</p>
+                            <p class="sku">SKU: PRO-004</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (312)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$34.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Stainless Bolt Kit', 34.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <div class="product-image large">⚙️</div>
+                            <h3>Cordless Drill Driver 20V</h3>
+                            <p class="description">Brushless motor drill with 2 batteries, charger, and 50-piece bit set included.</p>
+                            <p class="sku">SKU: PRO-005</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (156)</span>
+                                <span class="stock low-stock">Low Stock</span>
+                            </div>
+                            <p class="price">$199.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Cordless Drill Driver', 199.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <div class="product-badge new">New</div>
+                            <div class="product-image large">🔦</div>
+                            <h3>LED Work Light 5000 Lumen</h3>
+                            <p class="description">Portable tripod work light with adjustable heads and remote control.</p>
+                            <p class="sku">SKU: PRO-006</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (67)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$129.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('LED Work Light', 129.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="product-card">
+                            <div class="product-image large">🧤</div>
+                            <h3>Cut-Resistant Gloves - 12 Pack</h3>
+                            <p class="description">Level 5 cut resistance with polyurethane-coated palms for enhanced grip.</p>
+                            <p class="sku">SKU: PRO-007</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★☆ (198)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$44.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Cut-Resistant Gloves', 44.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="product-card">
+                            <div class="product-image large">🔌</div>
+                            <h3>Industrial Extension Cord 100ft</h3>
+                            <p class="description">12/3 SJTW heavy-duty cord with lighted end and weather-resistant jacket.</p>
+                            <p class="sku">SKU: PRO-008</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (423)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$69.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Extension Cord 100ft', 69.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 9 -->
+                        <div class="product-card">
+                            <div class="product-badge">Best Seller</div>
+                            <div class="product-image large">🧰</div>
+                            <h3>Tool Storage Cabinet</h3>
+                            <p class="description">26-inch 5-drawer rolling cabinet with ball-bearing slides and keyed lock.</p>
+                            <p class="sku">SKU: PRO-009</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★★ (89)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$349.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Tool Storage Cabinet', 349.99)">Add to Cart</button>
+                        </div>
+
+                        <!-- Product 10 -->
+                        <div class="product-card">
+                            <div class="product-image large">🌡️</div>
+                            <h3>Infrared Thermometer Gun</h3>
+                            <p class="description">Non-contact temperature measurement from -58°F to 1112°F with laser targeting.</p>
+                            <p class="sku">SKU: PRO-010</p>
+                            <div class="product-meta">
+                                <span class="rating">★★★★☆ (145)</span>
+                                <span class="stock in-stock">In Stock</span>
+                            </div>
+                            <p class="price">$54.99</p>
+                            <button class="btn btn-cart" onclick="addToCart('Infrared Thermometer', 54.99)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-full">Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="shop.html">Tools & Machining</a></li>
+                        <li><a href="shop.html">Safety Equipment</a></li>
+                        <li><a href="shop.html">Electrical</a></li>
+                        <li><a href="shop.html">Plumbing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Subscribe for updates and exclusive offers</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Protean.earth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

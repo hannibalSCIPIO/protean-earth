@@ -1,0 +1,11 @@
+{
+  "name": "protean-earth",
+  "version": "1.0.0",
+  "description": "Protean Earth website with Stripe payments",
+  "scripts": {
+    "build": "echo 'No build step needed'"
+  },
+  "dependencies": {
+    "stripe": "^14.14.0"
+  }
+}

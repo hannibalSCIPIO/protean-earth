@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Protean.earth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span>Free shipping on orders over $299</span>
+            <div class="top-links">
+                <a href="#">Track Order</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Account</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">PROTEAN</span>
+                    <span class="logo-dot">.earth</span>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by keyword, item # or model #">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="action-link">
+                    <span class="icon">📍</span>
+                    <span>Branch</span>
+                </a>
+                <a href="shop.html" class="action-link cart-link">
+                    <span class="icon">🛒</span>
+                    <span>Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="shop.html">All Products</a></li>
+                <li><a href="shop.html">Tools & Machining</a></li>
+                <li><a href="shop.html">Safety & Security</a></li>
+                <li><a href="shop.html">Electrical</a></li>
+                <li><a href="shop.html">Plumbing</a></li>
+                <li><a href="shop.html">HVAC</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about our products and services</p>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="container">
+            <div class="faq-layout">
+                <!-- FAQ Categories -->
+                <aside class="faq-sidebar">
+                    <h3>Categories</h3>
+                    <ul class="faq-nav">
+                        <li><a href="#shipping" class="active">Shipping & Delivery</a></li>
+                        <li><a href="#orders">Orders & Payment</a></li>
+                        <li><a href="#returns">Returns & Refunds</a></li>
+                        <li><a href="#products">Products & Specifications</a></li>
+                        <li><a href="#account">Account & Support</a></li>
+                    </ul>
+                </aside>
+
+                <!-- FAQ Items -->
+                <div class="faq-main">
+                    <!-- Shipping Section -->
+                    <div id="shipping" class="faq-section">
+                        <h2>Shipping & Delivery</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                What shipping options do you offer?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We offer several shipping options to meet your needs:</p>
+                                <ul>
+                                    <li><strong>Standard Shipping:</strong> 5-7 business days (Free on orders over $299)</li>
+                                    <li><strong>Expedited Shipping:</strong> 2-3 business days ($15)</li>
+                                    <li><strong>Next Day Delivery:</strong> 1 business day ($35)</li>
+                                    <li><strong>Freight Shipping:</strong> For large/heavy items (calculated at checkout)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                How can I track my order?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Once your order ships, you'll receive an email with a tracking number. You can also track your order by logging into your account and viewing your order history, or using the "Track Order" link at the top of the page.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Do you ship internationally?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Currently, we ship to the United States and Canada. International shipping to other countries is available for select products. Please contact our sales team for a custom quote on international orders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div id="orders" class="faq-section">
+                        <h2>Orders & Payment</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                What payment methods do you accept?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We accept the following payment methods:</p>
+                                <ul>
+                                    <li>Credit/Debit Cards (Visa, MasterCard, American Express, Discover)</li>
+                                    <li>PayPal</li>
+                                    <li>Wire Transfer (for orders over $1,000)</li>
+                                    <li>Net 30 terms (for approved business accounts)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Can I modify or cancel my order?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Orders can be modified or cancelled within 1 hour of placement. After that, orders enter our fulfillment process and cannot be changed. Please contact customer service immediately if you need to make changes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Returns Section -->
+                    <div id="returns" class="faq-section">
+                        <h2>Returns & Refunds</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                What is your return policy?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We offer a 30-day return policy for most items. Products must be unused, in original packaging, and include all accessories. Some items (custom orders, hazardous materials) are non-returnable. Return shipping is free for defective items.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                How long do refunds take?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Once we receive and inspect your return, refunds are processed within 3-5 business days. Credit card refunds may take an additional 5-7 business days to appear on your statement depending on your bank.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Section -->
+                    <div id="products" class="faq-section">
+                        <h2>Products & Specifications</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Are your products certified?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, all our safety equipment meets or exceeds ANSI, OSHA, and other relevant industry standards. Product certifications are listed on individual product pages and available upon request.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Do you offer bulk pricing?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes! We offer volume discounts on orders of 10+ units. Contact our sales team for a custom quote on large orders. We also offer special pricing for government, educational, and non-profit organizations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Section -->
+                    <div id="account" class="faq-section">
+                        <h2>Account & Support</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                How do I create a business account?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Business accounts can be created by selecting "Business Account" during registration. You'll need to provide your business name, tax ID, and contact information. Business accounts receive Net 30 payment terms, dedicated account managers, and exclusive pricing.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                How can I contact customer support?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Our customer support team is available 24/7 via:</p>
+                                <ul>
+                                    <li>Phone: 1-800-PROT-EAN (1-800-776-8326)</li>
+                                    <li>Email: support@protean.earth</li>
+                                    <li>Live Chat: Available on our website</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="shop.html">Tools & Machining</a></li>
+                        <li><a href="shop.html">Safety Equipment</a></li>
+                        <li><a href="shop.html">Electrical</a></li>
+                        <li><a href="shop.html">Plumbing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Subscribe for updates and exclusive offers</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Protean.earth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                
+                button.classList.toggle('active');
+                answer.classList.toggle('active');
+                icon.textContent = answer.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
