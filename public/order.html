@@ -28,6 +28,7 @@
         .payment-btn:hover { transform: translateY(-2px); }
         .venmo { background: #008CFF; color: white; }
         .cashapp { background: #FFDC00; color: black; }
+        .stripe { background: #635BFF; color: white; }
     </style>
 </head>
 <body>
@@ -71,6 +72,7 @@
 
             <button type="button" class="payment-btn venmo" onclick="openVenmo()">📱 Pay with Venmo</button>
             <button type="button" class="payment-btn cashapp" onclick="openCashApp()">💵 Pay with CashApp</button>
+            <button type="button" class="payment-btn stripe" onclick="openCard()">💳 Pay with Card</button>
             
             <p style="text-align: center; color: #666; margin-top: 20px;">
                 After payment, we'll contact you to confirm your design!
@@ -116,6 +118,40 @@
             const product = document.getElementById('product').value;
             const url = 'https://cash.app/' + CASHAPP_TAG + '/' + amount + '?note=PhotoMagnet' + product;
             window.open(url, '_blank');
+        }
+        
+        async function openCard() {
+            const phone = document.getElementById('phone').value.trim();
+            if (!phone) {
+                alert('Please enter your phone number first');
+                return;
+            }
+            const amount = document.getElementById('total-amount').textContent;
+            const productSelect = document.getElementById('product');
+            const product = productSelect.options[productSelect.selectedIndex].text;
+            
+            const btn = document.querySelector('.stripe');
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+            
+            try {
+                const res = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product, amount })
+                });
+                const data = await res.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Error: ' + (data.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Failed to create checkout: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '💳 Pay with Card';
+            }
         }
     </script>
 </body>
