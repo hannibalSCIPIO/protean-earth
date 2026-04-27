@@ -99,8 +99,8 @@
 
                 <p style="margin-bottom: 12px; font-weight: 600;">Choose Payment Method:</p>
                 
-                <a href="#" class="payment-btn venmo" onclick="openVenmo()">📱 Pay with Venmo</a>
-                <a href="#" class="payment-btn cashapp" onclick="openCashApp()">💵 Pay with CashApp</a>
+                <a href="#" class="payment-btn venmo" onclick="openVenmo(); return false;">📱 Pay with Venmo</a>
+                <a href="#" class="payment-btn cashapp" onclick="openCashApp(); return false;">💵 Pay with CashApp</a>
                 
                 <div class="or-divider"><span>or</span></div>
                 
@@ -128,7 +128,8 @@
             document.getElementById('total-amount') = option.dataset.price;
         }
         
-        function openVenmo() {
+        function openVenmo(event) {
+            event.preventDefault(); {
             const phone = document.getElementById('phone').value.replace(/\D/g, '');
             const amount = document.getElementById('total-amount').textContent;
             const product = document.getElementById('product').value;
@@ -143,7 +144,8 @@
             window.open(venmoUrl, '_blank');
         }
         
-        function openCashApp() {
+        function openCashApp(event) {
+            event.preventDefault(); {
             const phone = document.getElementById('phone').value.replace(/\D/g, '');
             const amount = document.getElementById('total-amount').textContent;
             const product = document.getElementById('product').value;
