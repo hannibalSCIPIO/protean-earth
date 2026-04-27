@@ -1,8 +1,1 @@
-{
-  "outputDirectory": "public",
-  "build": {
-    "env": {
-      "STRIPE_SECRET_KEY": "@stripe-secret-key"
-    }
-  }
-}
+{"outputDirectory": "public"}
