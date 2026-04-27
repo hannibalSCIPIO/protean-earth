@@ -1,7 +1,7 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || process.env.stripe_secret_key);
 
 module.exports = async (req, res) => {
-  console.log('ENV KEY EXISTS:', !!process.env.STRIPE_SECRET_KEY);
+  console.log('ENV KEY EXISTS:', !!process.env.STRIPE_SECRET_KEY || process.env.stripe_secret_key);
   
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
