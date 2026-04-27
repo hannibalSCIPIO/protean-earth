@@ -1,23 +1,23 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
+  console.log('ENV KEY EXISTS:', !!process.env.STRIPE_SECRET_KEY);
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { productId, phone, email } = req.body;
 
-  // Map product IDs to prices (in cents)
   const prices = {
-    '6pack': 3000,   // $30.00
-    '12pack': 5000,  // $50.00
-    'single': 1200,  // $12.00
-    'square': 1200,  // $12.00
-    'rectangle': 1200, // $12.00
-    'puzzle': 1800   // $18.00
+    '6pack': 3000,
+    '12pack': 5000,
+    'single': 1200,
+    'square': 1200,
+    'rectangle': 1200,
+    'puzzle': 1800
   };
 
-  // Human‑readable product names
   const productNames = {
     '6pack': '6‑Pack Magnet Set',
     '12pack': '12‑Pack Magnet Set',
@@ -34,31 +34,35 @@ module.exports = async (req, res) => {
 
   const productName = productNames[productId] || productId;
 
-  // Create a Stripe Checkout session
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: productName,
-            description: `Custom photo magnet – ${productName} – reference: ${phone}`,
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: productName,
+              description: `Custom photo magnet – reference: ${phone}`,
+            },
+            unit_amount: amount,
           },
-          unit_amount: amount,
+          quantity: 1,
         },
-        quantity: 1,
+      ],
+      mode: 'payment',
+      success_url: `https://protean-earth.vercel.app/success.html?session_id={CHECKOUT_SESSION_ID}&phone=${encodeURIComponent(phone)}`,
+      cancel_url: `https://protean-earth.vercel.app/shop.html`,
+      metadata: {
+        phone,
+        productId,
       },
-    ],
-    mode: 'payment',
-    success_url: `${process.env.SUCCESS_URL || 'https://protean-earth.vercel.app/success.html'}?session_id={CHECKOUT_SESSION_ID}&phone=${encodeURIComponent(phone)}`,
-    cancel_url: `${process.env.CANCEL_URL || 'https://protean-earth.vercel.app/shop.html'}`,
-    metadata: {
-      phone,
-      productId,
-    },
-    customer_email: email,
-  });
+      customer_email: email,
+    });
 
-  res.json({ url: session.url });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('STRIPE ERROR:', err.message);
+    res.status(500).json({ error: 'Payment error', details: err.message });
+  }
 };
