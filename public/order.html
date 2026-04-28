@@ -5,90 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout – Protean Earth</title>
     <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #faf9f7; }
+        .banner { background: #1a1a1a; color: #c9a962; text-align: center; padding: 0.75rem; font-size: 0.85rem; }
+        
+        header { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: #1a1a1a; text-decoration: none; }
+        nav a { color: #666; text-decoration: none; margin-left: 2rem; }
+        nav a:hover { color: #c9a962; }
+        
+        .hero { background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%); color: #fff; text-align: center; padding: 3rem 2rem; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; }
+        
+        .checkout { max-width: 500px; margin: 2rem auto; padding: 2rem; background: #fff; border: 1px solid #eee; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
-        .form-group input, .form-group select { width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .form-group input, .form-group select { width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; }
         
-        .payment-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            margin: 12px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .payment-btn:hover { transform: translateY(-2px); }
+        .total-box { margin: 1.5rem 0; padding: 1rem; background: #f5f4f2; border-radius: 8px; text-align: center; font-size: 1.25rem; }
+        
+        .payment-btn { display: block; width: 100%; padding: 1rem; margin: 0.75rem 0; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; }
         .venmo { background: #008CFF; color: white; }
         .cashapp { background: #FFDC00; color: black; }
         .stripe { background: #635BFF; color: white; }
+        .payment-btn:hover { opacity: 0.9; }
+        
+        footer { background: #1a1a1a; color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; margin-top: 3rem; }
     </style>
 </head>
 <body>
-    <div class="banner">Free shipping on orders $30+</div>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo"><img src="logo.svg" alt="Protean Earth" class="logo-img" /><span>Protean Earth</span></a>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="shop.html">Shop</a>
-            </nav>
-        </div>
+    <div class="banner">Free shipping on orders $30+ • Local delivery available</div>
+    
+    <header>
+        <a href="index.html" class="logo">PROTEAN EARTH</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+        </nav>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <h1>Checkout</h1>
-            <p>Complete your order.</p>
-        </div>
+        <h1>Checkout</h1>
     </section>
 
-    <section class="container" style="margin-top: 2rem;">
-        <div class="card" style="max-width: 500px; margin: 0 auto;">
-            <div class="form-group">
-                <label for="product">Select Magnet Pack</label>
-                <select id="product" onchange="updateTotal()">
-                    <option value="6pack" data-price="30">6-Pack – $30</option>
-                    <option value="12pack" data-price="50">12-Pack – $50</option>
-                    <option value="single" data-price="12">Single Magnet – $12</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Your Phone Number</label>
-                <input type="tel" id="phone" placeholder="3035551234" />
-            </div>
-
-            <div style="margin: 20px 0; padding: 16px; background: #f0f7ff; border-radius: 8px; text-align: center;">
-                <strong>Total: $<span id="total-amount">30</span></strong>
-            </div>
-
-            <button type="button" class="payment-btn venmo" onclick="openVenmo()">📱 Pay with Venmo</button>
-            <button type="button" class="payment-btn cashapp" onclick="openCashApp()">💵 Pay with CashApp</button>
-            <button type="button" class="payment-btn stripe" onclick="openCard()">💳 Pay with Card</button>
-            
-            <p style="text-align: center; color: #666; margin-top: 20px;">
-                After payment, we'll contact you to confirm your design!
-            </p>
+    <section class="checkout">
+        <div class="form-group">
+            <label for="product">Select Product</label>
+            <select id="product" onchange="updateTotal()">
+                <option value="square" data-price="12">Single Square (2.5"×2.5") – $12</option>
+                <option value="rectangle" data-price="12">Single Rectangle (2"×3") – $12</option>
+                <option value="round" data-price="14">Single Round (3") – $14</option>
+                <option value="wide" data-price="12">Single Wide (4"×2") – $12</option>
+                <option value="6pack-square" data-price="30">6-Pack Square – $30</option>
+                <option value="6pack-rect" data-price="30">6-Pack Rectangle – $30</option>
+                <option value="6pack-round" data-price="36">6-Pack Round – $36</option>
+                <option value="12pack-square" data-price="50">12-Pack Square – $50</option>
+                <option value="12pack-rect" data-price="50">12-Pack Rectangle – $50</option>
+                <option value="12pack-round" data-price="60">12-Pack Round – $60</option>
+            </select>
         </div>
+
+        <div class="form-group">
+            <label for="phone">Your Phone Number</label>
+            <input type="tel" id="phone" placeholder="3035551234" />
+        </div>
+
+        <div class="total-box">
+            <strong>Total: $<span id="total-amount">12</span></strong>
+        </div>
+
+        <button type="button" class="payment-btn venmo" onclick="openVenmo()">📱 Pay with Venmo</button>
+        <button type="button" class="payment-btn cashapp" onclick="openCashApp()">💵 Pay with CashApp</button>
+        <button type="button" class="payment-btn stripe" onclick="openCard()">💳 Pay with Card</button>
+        
+        <p style="text-align: center; color: #666; margin-top: 1.5rem; font-size: 0.9rem;">
+            After payment, we'll contact you to confirm your photo!
+        </p>
     </section>
 
-    <footer class="site-header">
-        <div class="container">
-            <p>&copy; 2026 Protean Earth. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>© 2026 Protean Earth. All rights reserved.</p>
     </footer>
 
     <script>
         const VENMO_USERNAME = 'sunnydandee';
         const CASHAPP_TAG = '$proteanEARTH';
+        
+        // Stripe payment links
+        const STRIPE_LINKS = {
+            'square': 'https://buy.stripe.com/test_7sY28qh0ReTw7lfeLRes003',
+            'rectangle': 'https://buy.stripe.com/test_28E28q11T5iWdJD1Z5es004',
+            'round': 'https://buy.stripe.com/test_eVq4gy9ypfXA8pj5bhes005',
+            'wide': 'https://buy.stripe.com/test_6oU00i11T3aO8pjeLRes006',
+            '6pack-square': 'https://buy.stripe.com/test_5kQ14mh0R26K20V7jpes007',
+            '6pack-rect': 'https://buy.stripe.com/test_9B67sK8ul4eSaxr47des008',
+            '6pack-round': 'https://buy.stripe.com/test_bJebJ06md7r48pj1Z5es009',
+            '12pack-square': 'https://buy.stripe.com/test_dRmeVccKB26KcFz5bhes00a',
+            '12pack-rect': 'https://buy.stripe.com/test_cNi28qeSJ9zccFz9rxes00b',
+            '12pack-round': 'https://buy.stripe.com/test_9B614m8ul3aOeNHfPVes00c'
+        };
         
         function updateTotal() {
             const select = document.getElementById('product');
@@ -98,48 +115,36 @@
         
         function openVenmo() {
             const phone = document.getElementById('phone').value.trim();
-            if (!phone) {
-                alert('Please enter your phone number first');
-                return;
-            }
+            if (!phone) { alert('Please enter your phone number'); return; }
             const amount = document.getElementById('total-amount').textContent;
             const product = document.getElementById('product').value;
-            const url = 'https://venmo.com/' + VENMO_USERNAME + '?txn=pay&amount=' + amount + '&note=PhotoMagnet' + product + 'Ref' + phone;
-            window.open(url, '_blank');
+            window.open('https://venmo.com/' + VENMO_USERNAME + '?txn=pay&amount=' + amount + '&note=PhotoMagnet' + product + 'Ref' + phone, '_blank');
         }
         
         function openCashApp() {
             const phone = document.getElementById('phone').value.trim();
-            if (!phone) {
-                alert('Please enter your phone number first');
-                return;
-            }
+            if (!phone) { alert('Please enter your phone number'); return; }
             const amount = document.getElementById('total-amount').textContent;
             const product = document.getElementById('product').value;
-            const url = 'https://cash.app/' + CASHAPP_TAG + '/' + amount + '?note=PhotoMagnet' + product;
-            window.open(url, '_blank');
+            window.open('https://cash.app/' + CASHAPP_TAG + '/' + amount + '?note=PhotoMagnet' + product, '_blank');
         }
         
-        const STRIPE_LINKS = {
-            '6pack': 'https://buy.stripe.com/test_8x28wOaCt7r4cFz1Z5es000',
-            '12pack': 'https://buy.stripe.com/test_8x2aEWdOFh1EbBvcDJes001',
-            'single': 'https://buy.stripe.com/test_4gM6oGeSJbHkcFz47des002'
-        };
-
-        async function openCard() {
+        function openCard() {
             const phone = document.getElementById('phone').value.trim();
-            if (!phone) {
-                alert('Please enter your phone number first');
-                return;
-            }
-            const productSelect = document.getElementById('product');
-            const productKey = productSelect.value;
+            if (!phone) { alert('Please enter your phone number'); return; }
+            const productKey = document.getElementById('product').value;
             const url = STRIPE_LINKS[productKey];
-            if (url) {
-                window.location.href = url;
-            } else {
-                alert('Please select a product');
-            }
+            if (url) { window.location.href = url; }
+            else { alert('Product not available'); }
+        }
+        
+        // Initialize from URL param
+        const params = new URLSearchParams(window.location.search);
+        const productParam = params.get('product');
+        if (productParam) {
+            const select = document.getElementById('product');
+            select.value = productParam;
+            updateTotal();
         }
     </script>
 </body>

@@ -5,108 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Protean Earth – Custom Photo Magnets</title>
     <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #faf9f7; color: #1a1a1a; }
+        
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%);
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Spiral_Jetty_from_air.jpg/1280px-Spiral_Jetty_from_air.jpg') center/cover;
+            opacity: 0.4;
+            filter: grayscale(30%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 2.5rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #c9a962;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid #c9a962;
+        }
+        .cta-button:hover {
+            background: transparent;
+            color: #c9a962;
+        }
+        
+        .banner {
+            background: #1a1a1a;
+            color: #c9a962;
+            text-align: center;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+        nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #c9a962; }
+        
+        .features {
+            padding: 5rem 2rem;
+            background: #fff;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature {
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .products-preview {
+            padding: 5rem 2rem;
+            background: #f5f4f2;
+        }
+        .products-preview h2 {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: #fff;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            background: #e0e0e0;
+        }
+        .product-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-card .price {
+            color: #c9a962;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .product-card .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        footer a { color: #c9a962; }
+        
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav { margin-top: 1rem; }
+            nav a { margin: 0 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Free Shipping Banner -->
-    <div class="banner">Free shipping on orders $30+</div>
-        <div class="banner">Expedited 2-hour delivery available, Fri-Sun 2pm-11pm, 1 mile perimeter 10000 S State, Sandy UT</div>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <img src="logo.svg" alt="Protean Earth" class="logo-img" />
-                <span>Protean Earth</span>
-            </a>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="shop.html">Shop</a>
-                <a href="#about">About</a>
-                <a href="#faq">FAQ</a>
-            </nav>
-        </div>
+    <div class="banner">Free shipping on orders $30+ • Local delivery available in Sandy, UT</div>
+    
+    <header>
+        <a href="index.html" class="logo">PROTEAN EARTH</a>
+        <nav>
+            <a href="shop.html">Shop</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+        </nav>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <h1>Hand‑made Custom Photo Magnets</h1>
-            <p>Turn your favorite memories into beautiful fridge magnets. Perfect for gifts, home décor, or business branding.</p>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Protean Earth</h1>
+            <p class="tagline">Turn your memories into lasting magnets</p>
             <a href="shop.html" class="cta-button">Shop Now</a>
         </div>
     </section>
 
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🖼️</div>
+                <h3>Your Photos, Our Craft</h3>
+                <p>We print your favorite photos onto premium magnetic sheets with vibrant colors that last.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Free shipping on orders $30+. Local delivery available in Sandy, UT area.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💎</div>
+                <h3>Quality Materials</h3>
+                <p>Premium matte finish, strong magnets that stick to any metal surface.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="products-preview">
-        <div class="container">
-            <h2>Our Best‑Sellers</h2>
-            <div class="product-cards">
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x300?text=Square+Magnet" alt="Square Magnet" />
-                    <h3>2.5" x 2.5" Square Magnet</h3>
-                    <p class="price">$12</p>
-                    <a href="shop.html#square" class="button">Buy</a>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x200?text=Rect+Magnet" alt="Rectangle Magnet" />
-                    <h3>2.5" x 3.5" Rectangle Magnet</h3>
-                    <p class="price">$12</p>
-                    <a href="shop.html#rectangle" class="button">Buy</a>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x300?text=Puzzle+Set" alt="Puzzle Set" />
-                    <h3>Puzzle Magnet Set</h3>
-                    <p class="price">$18</p>
-                    <a href="shop.html#puzzle" class="button">Buy</a>
-                </div>
+        <h2>Popular Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=Square" alt="Square" />
+                <h3>Single Square</h3>
+                <p class="price">$12</p>
+                <a href="shop.html" class="button">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=6-Pack" alt="6-Pack" />
+                <h3>6-Pack Bundle</h3>
+                <p class="price">$30</p>
+                <a href="shop.html" class="button">Shop Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=12-Pack" alt="12-Pack" />
+                <h3>12-Pack Bundle</h3>
+                <p class="price">$50</p>
+                <a href="shop.html" class="button">Shop Now</a>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <h2>What Our Customers Say</h2>
-            <div class="testimonial-cards">
-                <blockquote>
-                    <p>“The magnets look exactly like my photo – vibrant colors and a sturdy feel. My kitchen has never looked better!”</p>
-                    <cite>- Maya L.</cite>
-                </blockquote>
-                <blockquote>
-                    <p>“Ordered a puzzle set for my kids and they love it. It’s a cute décor piece and a fun activity.”</p>
-                    <cite>- Kevin R.</cite>
-                </blockquote>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Protean Earth</h2>
-            <p>We are a small, artisanal studio that prints your personal photos onto high‑quality magnetic sheets. Each magnet is finished with a matte coating for a professional look that lasts.</p>
-        </div>
-    </section>
-
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <details>
-                <summary>How long does shipping take?</summary>
-                <p>Orders are processed within 1‑2 business days and shipped via standard USPS. Delivery typically takes 3‑5 days.</p>
-            </details>
-            <details>
-                <summary>Can I order a custom size?</summary>
-                <p>We currently offer three standard sizes. If you need a different size, please contact us and we’ll see what we can do.</p>
-            </details>
-            <details>
-                <summary>How do I upload my photo?</summary>
-                <p>You’ll upload your image when you add a product to the cart. We’ll use that file to print your magnet.</p>
-            </details>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Protean Earth. All rights reserved.</p>
-        </div>
+    <footer id="about">
+        <p>© 2026 Protean Earth. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Custom photo magnets made with care in Utah.</p>
     </footer>
-    <script src="cart.js"></script>
 </body>
 </html>
-<!-- redeploy trigger -->

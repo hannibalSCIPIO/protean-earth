@@ -3,72 +3,219 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Protean Earth – Shop</title>
+    <title>Shop – Protean Earth</title>
     <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #faf9f7; color: #1a1a1a; }
+        
+        .banner { background: #1a1a1a; color: #c9a962; text-align: center; padding: 0.75rem; font-size: 0.85rem; }
+        
+        header {
+            background: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: #1a1a1a; text-decoration: none; letter-spacing: 0.1em; }
+        nav a { color: #666; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; }
+        nav a:hover, nav a.active { color: #c9a962; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%);
+            color: #fff;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero p { opacity: 0.8; }
+        
+        .products { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .products h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .product-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            background: #f0f0f0;
+            margin-bottom: 1rem;
+        }
+        .product-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .product-card .size {
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-card .price {
+            color: #c9a962;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .product-card .btn {
+            display: block;
+            padding: 0.6rem 1rem;
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+        .product-card .btn:hover { background: #c9a962; }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #c9a962;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="banner">Free shipping on orders $30+</div>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo"><img src="logo.svg" alt="Protean Earth" class="logo-img" /><span>Protean Earth</span></a>
-            <nav class="nav"><a href="index.html">Home</a><a href="shop.html" class="active">Shop</a><a href="#about">About</a><a href="#faq">FAQ</a></nav>
-        </div>
+    <div class="banner">Free shipping on orders $30+ • Local delivery available</div>
+    
+    <header>
+        <a href="index.html" class="logo">PROTEAN EARTH</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="index.html#faq">FAQ</a>
+        </nav>
     </header>
 
-    <section class="hero"><div class="container"><h1>Custom Photo Magnets</h1><p>Select a size, upload your photo, and add to cart.</p></div></section>
+    <section class="hero">
+        <h1>Shop</h1>
+        <p>Choose your perfect magnet</p>
+    </section>
 
-    <section class="product-list" id="products">
-        <div class="container">
-            <h2>Products</h2>
-            <div class="product-cards">
-                <!-- Square Magnet -->
-                <div class="card" id="square">
-                    <img src="https://via.placeholder.com/300x300?text=Square+Magnet" alt="Square Magnet" />
-                    <h3>2.5" x 2.5" Square Magnet</h3>
-                    <p class="price">$12</p>
-                    <form class="upload-form" onsubmit="addProduct(event, 'Square Magnet', 12)">
-                        <label>Upload Photo (simulated): <input type="file" name="photo" required /></label>
-                        <button type="submit" class="button">Add to Cart</button>
-                    </form>
-                    <a href="order.html?product=square" class="button" style="margin-top:0.5rem;">Pay with Card</a>
-                </div>
-                <!-- Rectangle Magnet -->
-                <div class="card" id="rectangle">
-                    <img src="https://via.placeholder.com/300x200?text=Rect+Magnet" alt="Rectangle Magnet" />
-                    <h3>2.5" x 3.5" Rectangle Magnet</h3>
-                    <p class="price">$12</p>
-                    <form class="upload-form" onsubmit="addProduct(event, 'Rectangle Magnet', 12)">
-                        <label>Upload Photo (simulated): <input type="file" name="photo" required /></label>
-                        <button type="submit" class="button">Add to Cart</button>
-                    </form>
-                    <a href="order.html?product=rectangle" class="button" style="margin-top:0.5rem;">Pay with Card</a>
-                </div>
-                <!-- Puzzle Set -->
-                <div class="card" id="puzzle">
-                    <img src="https://via.placeholder.com/300x300?text=Puzzle+Set" alt="Puzzle Set" />
-                    <h3>Puzzle Magnet Set</h3>
-                    <p class="price">$18</p>
-                    <form class="upload-form" onsubmit="addProduct(event, 'Puzzle Set', 18)">
-                        <label>Upload Photo (simulated): <input type="file" name="photo" required /></label>
-                        <button type="submit" class="button">Add to Cart</button>
-                    </form>
-                    <a href="order.html?product=puzzle" class="button" style="margin-top:0.5rem;">Pay with Card</a>
-                </div>
+    <section class="products">
+        <h2 class="section-title">Single Magnets</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=Square" alt="Square" />
+                <h3>Square</h3>
+                <p class="size">2.5" × 2.5"</p>
+                <p class="price">$12</p>
+                <a href="order.html?product=square" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=Rectangle" alt="Rectangle" />
+                <h3>Rectangle</h3>
+                <p class="size">2" × 3"</p>
+                <p class="price">$12</p>
+                <a href="order.html?product=rectangle" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=Round" alt="Round" />
+                <h3>Round</h3>
+                <p class="size">3" diameter</p>
+                <p class="price">$14</p>
+                <a href="order.html?product=round" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=Wide" alt="Wide" />
+                <h3>Wide</h3>
+                <p class="size">4" × 2"</p>
+                <p class="price">$12</p>
+                <a href="order.html?product=wide" class="btn">Buy Now</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">6-Pack Bundles</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=6-Pack+Square" alt="6-Pack Square" />
+                <h3>6-Pack Square</h3>
+                <p class="size">2.5" × 2.5" each</p>
+                <p class="price">$30</p>
+                <a href="order.html?product=6pack-square" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=6-Pack+Rect" alt="6-Pack Rectangle" />
+                <h3>6-Pack Rectangle</h3>
+                <p class="size">2" × 3" each</p>
+                <p class="price">$30</p>
+                <a href="order.html?product=6pack-rect" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=6-Pack+Round" alt="6-Pack Round" />
+                <h3>6-Pack Round</h3>
+                <p class="size">3" diameter each</p>
+                <p class="price">$36</p>
+                <a href="order.html?product=6pack-round" class="btn">Buy Now</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">12-Pack Bundles</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=12-Pack+Square" alt="12-Pack Square" />
+                <h3>12-Pack Square</h3>
+                <p class="size">2.5" × 2.5" each</p>
+                <p class="price">$50</p>
+                <a href="order.html?product=12pack-square" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=12-Pack+Rect" alt="12-Pack Rectangle" />
+                <h3>12-Pack Rectangle</h3>
+                <p class="size">2" × 3" each</p>
+                <p class="price">$50</p>
+                <a href="order.html?product=12pack-rect" class="btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x300?text=12-Pack+Round" alt="12-Pack Round" />
+                <h3>12-Pack Round</h3>
+                <p class="size">3" diameter each</p>
+                <p class="price">$60</p>
+                <a href="order.html?product=12pack-round" class="btn">Buy Now</a>
             </div>
         </div>
     </section>
 
-    <section class="cart-section" id="cart-section">
-        <div class="container">
-            <h2>Shopping Cart</h2>
-            <div id="cart-items"></div>
-            <p class="cart-total">Total: $<span id="cart-total">0</span></p>
-            <button class="button" onclick="clearCart()">Clear Cart</button>
-        </div>
-    </section>
-
-    <footer class="site-footer"><div class="container"><p>&copy; 2026 Protean Earth. All rights reserved.</p></div></footer>
-    <script src="cart.js"></script>
+    <footer>
+        <p>© 2026 Protean Earth. All rights reserved.</p>
+    </footer>
 </body>
 </html>
