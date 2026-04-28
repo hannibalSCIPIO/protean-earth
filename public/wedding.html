@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Venues – Protean Earth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #faf9f7; color: #1a1a1a; }
+        
+        .banner { background: #1a1a1a; color: #c9a962; text-align: center; padding: 0.75rem; font-size: 0.85rem; }
+        
+        header { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: #1a1a1a; text-decoration: none; }
+        nav a { color: #666; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero p { opacity: 0.85; }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 3rem 2rem; }
+        
+        .product-select {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .product-option {
+            flex: 1;
+            padding: 1.5rem;
+            border: 2px solid #ddd;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .product-option:hover { border-color: #c9a962; }
+        .product-option.selected { border-color: #c9a962; background: #f0f7ff; }
+        .product-option .size { font-size: 1.3rem; font-weight: 700; }
+        .product-option .price { color: #c9a962; font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; }
+        
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; 
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        
+        .upload-section {
+            background: #f5f4f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .upload-section h3 { margin-bottom: 1rem; }
+        .file-input {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #c9a962;
+            color: #1a1a1a;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        footer { background: #1a1a1a; color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <div class="banner">💒 Wedding Venues – Custom Photo Magnets</div>
+    
+    <header>
+        <a href="index.html" class="logo">PROTEAN EARTH</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="venues.html">Venues</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>💒 Wedding Venue Special</h1>
+        <p>Custom photo magnets for your special day</p>
+    </section>
+
+    <div class="container" id="orderForm">
+        <h2 style="margin-bottom: 1.5rem; text-align: center;">Select Your 6-Pack</h2>
+        
+        <div class="product-select">
+            <div class="product-option selected" data-size="square" data-price="18" onclick="selectProduct(this)">
+                <div class="size">Square</div>
+                <div class="price">$18</div>
+                <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">2.5" × 2.5"</div>
+            </div>
+            <div class="product-option" data-size="rect" data-price="21" onclick="selectProduct(this)">
+                <div class="size">Rectangle</div>
+                <div class="price">$21</div>
+                <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">2.5" × 3.5"</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Name" />
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="8015551234" />
+        </div>
+        
+        <div class="form-group">
+            <label for="venue">Venue Name</label>
+            <input type="text" id="venue" placeholder="Wedding venue name" />
+        </div>
+        
+        <div class="upload-section">
+            <h3>📸 Upload Your Photos</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+                Upload exactly 6 photos for your 6-pack. We'll text you when done!
+            </p>
+            <input type="file" id="photo1" accept="image/*" class="file-input">
+            <input type="file" id="photo2" accept="image/*" class="file-input">
+            <input type="file" id="photo3" accept="image/*" class="file-input">
+            <input type="file" id="photo4" accept="image/*" class="file-input">
+            <input type="file" id="photo5" accept="image/*" class="file-input">
+            <input type="file" id="photo6" accept="image/*" class="file-input">
+        </div>
+        
+        <button class="submit-btn" onclick="submitOrder()">💳 Pay & Place Order</button>
+    </div>
+
+    <div class="container success-message" id="success">
+        <h2>🎉 Order Confirmed!</h2>
+        <p style="margin-top: 1rem;">Thank you! We'll create your custom magnets and text you when ready.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+            Or email your photos to: photos@protean.earth
+        </p>
+    </div>
+
+    <footer>
+        <p>© 2026 Protean Earth. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const VENMO_USERNAME = 'sunnydandee';
+        const CASHAPP_TAG = '$proteanEARTH';
+        
+        let selected = { size: 'square', price: 18 };
+        
+        function selectProduct(el) {
+            document.querySelectorAll('.product-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            selected.size = el.dataset.size;
+            selected.price = parseInt(el.dataset.price);
+        }
+        
+        function submitOrder() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const venue = document.getElementById('venue').value.trim();
+            
+            if (!name || !phone) {
+                alert('Please enter your name and phone number');
+                return;
+            }
+            
+            // Check if photos are selected (optional, can email later)
+            const hasPhotos = ['photo1','photo2','photo3','photo4','photo5','photo6']
+                .some(id => document.getElementById(id).files.length > 0);
+            
+            const sizeName = selected.size === 'square' ? 'Square' : 'Rectangle';
+            const note = `Wedding${sizeName}6Pack`;
+            
+            // Open payment
+            if (confirm('OK for Venmo, Cancel for CashApp')) {
+                window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${selected.price}&note=${note}Ref${phone}`, '_blank');
+            } else {
+                window.open(`https://cash.app/${CASHAPP_TAG}/${selected.price}?note=${note}`, '_blank');
+            }
+            
+            // Show success and instructions
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            
+            // Store order info for reference
+            localStorage.setItem('weddingOrder', JSON.stringify({
+                name, phone, venue, size: selected.size, price: selected.price
+            }));
+        }
+    </script>
+</body>
+</html>
