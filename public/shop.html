@@ -4,22 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop – Protean Earth</title>
-    <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #faf9f7; color: #1a1a1a; }
         
         .banner { background: #1a1a1a; color: #c9a962; text-align: center; padding: 0.75rem; font-size: 0.85rem; }
+        .express-banner { background: #c9a962; color: #1a1a1a; text-align: center; padding: 0.5rem; font-size: 0.8rem; font-weight: 600; }
         
-        header {
-            background: #fff;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-        }
+        header { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: #1a1a1a; text-decoration: none; letter-spacing: 0.1em; }
         nav a { color: #666; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; }
         nav a:hover, nav a.active { color: #c9a962; }
@@ -28,194 +21,199 @@
             background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%);
             color: #fff;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 3rem 2rem;
         }
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-        .hero p { opacity: 0.8; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero p { opacity: 0.85; }
         
-        .products { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
-        .products h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
         
-        .product-grid {
+        .size-tabs { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+        .size-tab {
+            padding: 0.75rem 2rem;
+            border: 2px solid #ddd;
+            background: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .size-tab.active { border-color: #c9a962; background: #c9a962; color: #1a1a1a; }
+        
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
         }
         
         .product-card {
             background: #fff;
             border: 1px solid #eee;
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s;
         }
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        .product-card img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            background: #f0f0f0;
-            margin-bottom: 1rem;
-        }
-        .product-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-        .product-card .size {
-            color: #888;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .product-card .price {
-            color: #c9a962;
-            font-weight: 600;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .product-card .btn {
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .product-card .qty { font-size: 1.8rem; font-weight: 700; color: #1a1a1a; }
+        .product-card .qty-label { color: #666; font-size: 0.9rem; }
+        .product-card .size-info { color: #888; font-size: 0.85rem; margin: 0.5rem 0; }
+        .product-card .price { color: #c9a962; font-size: 1.5rem; font-weight: 700; margin: 1rem 0; }
+        .product-card .shipping { color: #22c55e; font-size: 0.8rem; font-weight: 600; }
+        
+        .product-card .select-btn {
             display: block;
-            padding: 0.6rem 1rem;
+            width: 100%;
+            padding: 0.75rem;
             background: #1a1a1a;
             color: #fff;
-            text-decoration: none;
-            font-size: 0.85rem;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: background 0.3s;
         }
-        .product-card .btn:hover { background: #c9a962; }
+        .product-card .select-btn:hover { background: #c9a962; }
         
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin: 3rem 0 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #c9a962;
-        }
-        
-        footer {
+        .selected-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: #1a1a1a;
-            color: rgba(255,255,255,0.6);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            z-index: 100;
         }
+        .selected-bar.show { transform: translateY(0); }
+        .selected-bar .info { font-size: 1rem; }
+        .selected-bar .total { font-size: 1.25rem; font-weight: 700; color: #c9a962; }
+        .selected-bar .checkout-btn {
+            padding: 0.75rem 2rem;
+            background: #c9a962;
+            color: #1a1a1a;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .shipping-note {
+            text-align: center;
+            color: #666;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        footer { background: #1a1a1a; color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; margin-top: 4rem; }
     </style>
 </head>
 <body>
-    <div class="banner">Free shipping on orders $30+ • Local delivery available</div>
+    <div class="banner">Free shipping on orders of 6+ magnets</div>
+    <div class="express-banner">🚀 Express Local Delivery: 1hr within 1.5mi of 10001 S State St, Sandy (Fri-Sun 6pm-11pm)</div>
     
     <header>
         <a href="index.html" class="logo">PROTEAN EARTH</a>
         <nav>
             <a href="index.html">Home</a>
             <a href="shop.html" class="active">Shop</a>
-            <a href="index.html#faq">FAQ</a>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Shop</h1>
-        <p>Choose your perfect magnet</p>
+        <p>Choose your size and quantity</p>
     </section>
 
-    <section class="products">
-        <h2 class="section-title">Single Magnets</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=Square" alt="Square" />
-                <h3>Square</h3>
-                <p class="size">2.5" × 2.5"</p>
-                <p class="price">$12</p>
-                <a href="order.html?product=square" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=Rectangle" alt="Rectangle" />
-                <h3>Rectangle</h3>
-                <p class="size">2" × 3"</p>
-                <p class="price">$12</p>
-                <a href="order.html?product=rectangle" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=Round" alt="Round" />
-                <h3>Round</h3>
-                <p class="size">3" diameter</p>
-                <p class="price">$14</p>
-                <a href="order.html?product=round" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=Wide" alt="Wide" />
-                <h3>Wide</h3>
-                <p class="size">4" × 2"</p>
-                <p class="price">$12</p>
-                <a href="order.html?product=wide" class="btn">Buy Now</a>
-            </div>
+    <div class="container">
+        <div class="size-tabs">
+            <button class="size-tab active" data-size="square" onclick="switchSize('square')">Square 2.5" × 2.5"</button>
+            <button class="size-tab" data-size="rect" onclick="switchSize('rect')">Rectangle 2.5" × 3.5"</button>
         </div>
+        
+        <div class="products-grid" id="products">
+            <!-- Products rendered by JS -->
+        </div>
+        
+        <p class="shipping-note">📦 Free shipping on orders of 6+ magnets 🚚</p>
+    </div>
 
-        <h2 class="section-title">6-Pack Bundles</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=6-Pack+Square" alt="6-Pack Square" />
-                <h3>6-Pack Square</h3>
-                <p class="size">2.5" × 2.5" each</p>
-                <p class="price">$30</p>
-                <a href="order.html?product=6pack-square" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=6-Pack+Rect" alt="6-Pack Rectangle" />
-                <h3>6-Pack Rectangle</h3>
-                <p class="size">2" × 3" each</p>
-                <p class="price">$30</p>
-                <a href="order.html?product=6pack-rect" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=6-Pack+Round" alt="6-Pack Round" />
-                <h3>6-Pack Round</h3>
-                <p class="size">3" diameter each</p>
-                <p class="price">$36</p>
-                <a href="order.html?product=6pack-round" class="btn">Buy Now</a>
-            </div>
+    <div class="selected-bar" id="selectedBar">
+        <div class="info">
+            <span id="selectedName"></span> — <span id="selectedQty"></span> magnets
         </div>
-
-        <h2 class="section-title">12-Pack Bundles</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=12-Pack+Square" alt="12-Pack Square" />
-                <h3>12-Pack Square</h3>
-                <p class="size">2.5" × 2.5" each</p>
-                <p class="price">$50</p>
-                <a href="order.html?product=12pack-square" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=12-Pack+Rect" alt="12-Pack Rectangle" />
-                <h3>12-Pack Rectangle</h3>
-                <p class="size">2" × 3" each</p>
-                <p class="price">$50</p>
-                <a href="order.html?product=12pack-rect" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x300?text=12-Pack+Round" alt="12-Pack Round" />
-                <h3>12-Pack Round</h3>
-                <p class="size">3" diameter each</p>
-                <p class="price">$60</p>
-                <a href="order.html?product=12pack-round" class="btn">Buy Now</a>
-            </div>
-        </div>
-    </section>
+        <div class="total">$<span id="selectedTotal"></span></div>
+        <button class="checkout-btn" onclick="goToCheckout()">Checkout</button>
+    </div>
 
     <footer>
         <p>© 2026 Protean Earth. All rights reserved.</p>
     </footer>
+
+    <script>
+        const PRICING = {
+            square: [
+                { qty: 1, price: 4, size: '2.5" × 2.5"' },
+                { qty: 6, price: 18, size: '2.5" × 2.5"', freeShipping: true },
+                { qty: 12, price: 30, size: '2.5" × 2.5"', freeShipping: true },
+                { qty: 24, price: 50, size: '2.5" × 2.5"', freeShipping: true }
+            ],
+            rect: [
+                { qty: 1, price: 5, size: '2.5" × 3.5"' },
+                { qty: 6, price: 21, size: '2.5" × 3.5"', freeShipping: true },
+                { qty: 12, price: 33, size: '2.5" × 3.5"', freeShipping: true },
+                { qty: 24, price: 55, size: '2.5" × 3.5"', freeShipping: true }
+            ]
+        };
+        
+        let currentSize = 'square';
+        let selectedProduct = null;
+        
+        function renderProducts() {
+            const products = PRICING[currentSize];
+            const grid = document.getElementById('products');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="qty">${p.qty}</div>
+                    <div class="qty-label">magnets</div>
+                    <div class="size-info">${p.size} each</div>
+                    <div class="price">$${p.price}</div>
+                    ${p.freeShipping ? '<div class="shipping">📦 Free Shipping</div>' : ''}
+                    <button class="select-btn" onclick="selectProduct('${currentSize}', ${p.qty}, ${p.price})">Select</button>
+                </div>
+            `).join('');
+        }
+        
+        function switchSize(size) {
+            currentSize = size;
+            document.querySelectorAll('.size-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-size="${size}"]`).classList.add('active');
+            renderProducts();
+        }
+        
+        function selectProduct(size, qty, price) {
+            selectedProduct = { size, qty, price };
+            document.getElementById('selectedName').textContent = size === 'square' ? 'Square' : 'Rectangle';
+            document.getElementById('selectedQty').textContent = qty;
+            document.getElementById('selectedTotal').textContent = price;
+            document.getElementById('selectedBar').classList.add('show');
+        }
+        
+        function goToCheckout() {
+            if (!selectedProduct) return;
+            const params = new URLSearchParams({
+                size: selectedProduct.size,
+                qty: selectedProduct.qty,
+                price: selectedProduct.price
+            });
+            window.location.href = 'order.html?' + params;
+        }
+        
+        renderProducts();
+    </script>
 </body>
 </html>
