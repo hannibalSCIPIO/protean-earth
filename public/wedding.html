@@ -26,6 +26,17 @@
         
         .container { max-width: 600px; margin: 0 auto; padding: 3rem 2rem; }
         
+        .pricing-box {
+            background: #c9a962;
+            color: #1a1a1a;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .pricing-box .amount { font-size: 3rem; font-weight: 700; }
+        .pricing-box .desc { font-size: 1rem; margin-top: 0.5rem; }
+        
         .product-select {
             display: flex;
             gap: 1rem;
@@ -42,14 +53,12 @@
         .product-option:hover { border-color: #c9a962; }
         .product-option.selected { border-color: #c9a962; background: #f0f7ff; }
         .product-option .size { font-size: 1.3rem; font-weight: 700; }
-        .product-option .price { color: #c9a962; font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; }
         
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
         .form-group input, .form-group textarea { 
             width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; 
         }
-        .form-group textarea { resize: vertical; min-height: 100px; }
         
         .upload-section {
             background: #f5f4f2;
@@ -58,16 +67,12 @@
             margin: 1.5rem 0;
         }
         .upload-section h3 { margin-bottom: 1rem; }
-        .file-input {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
         
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background: #c9a962;
-            color: #1a1a1a;
+            background: #1a1a1a;
+            color: #fff;
             border: none;
             font-size: 1.1rem;
             font-weight: 700;
@@ -88,7 +93,7 @@
     </style>
 </head>
 <body>
-    <div class="banner">💒 Wedding Venues – Custom Photo Magnets</div>
+    <div class="banner">💒 Wedding Venues – Partner Program</div>
     
     <header>
         <a href="index.html" class="logo">PROTEAN EARTH</a>
@@ -100,63 +105,66 @@
     </header>
 
     <section class="hero">
-        <h1>💒 Wedding Venue Special</h1>
-        <p>Custom photo magnets for your special day</p>
+        <h1>💒 Wedding Venue Partner</h1>
+        <p>Offer custom photo magnets to your wedding guests</p>
     </section>
 
-    <div class="container" id="orderForm">
-        <h2 style="margin-bottom: 1.5rem; text-align: center;">Select Your 6-Pack</h2>
+    <div class="container">
+        <div class="pricing-box">
+            <div class="amount">$2,000</div>
+            <div class="desc">Upfront fee covers all printing for your venue</div>
+        </div>
+        
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Choose Your Size</h2>
         
         <div class="product-select">
-            <div class="product-option selected" data-size="square" data-price="18" onclick="selectProduct(this)">
+            <div class="product-option selected" data-size="square" onclick="selectProduct(this)">
                 <div class="size">Square</div>
-                <div class="price">$18</div>
                 <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">2.5" × 2.5"</div>
             </div>
-            <div class="product-option" data-size="rect" data-price="21" onclick="selectProduct(this)">
+            <div class="product-option" data-size="rect" onclick="selectProduct(this)">
                 <div class="size">Rectangle</div>
-                <div class="price">$21</div>
                 <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">2.5" × 3.5"</div>
             </div>
         </div>
         
         <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Name" />
+            <label for="venue">Venue Name</label>
+            <input type="text" id="venue" placeholder="Your wedding venue name" />
         </div>
         
         <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="name">Contact Name</label>
+            <input type="text" id="name" placeholder="Your name" />
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@venue.com" />
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone</label>
             <input type="tel" id="phone" placeholder="8015551234" />
         </div>
         
-        <div class="form-group">
-            <label for="venue">Venue Name</label>
-            <input type="text" id="venue" placeholder="Wedding venue name" />
-        </div>
+        <button class="submit-btn" onclick="submitOrder()">Submit Venue Agreement</button>
         
-        <div class="upload-section">
-            <h3>📸 Upload Your Photos</h3>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
-                Upload exactly 6 photos for your 6-pack. We'll text you when done!
-            </p>
-            <input type="file" id="photo1" accept="image/*" class="file-input">
-            <input type="file" id="photo2" accept="image/*" class="file-input">
-            <input type="file" id="photo3" accept="image/*" class="file-input">
-            <input type="file" id="photo4" accept="image/*" class="file-input">
-            <input type="file" id="photo5" accept="image/*" class="file-input">
-            <input type="file" id="photo6" accept="image/*" class="file-input">
+        <div style="margin-top: 2rem; padding: 1.5rem; background: #f5f4f2; border-radius: 8px;">
+            <h3>How It Works</h3>
+            <ol style="padding-left: 1.5rem; color: #666; margin-top: 1rem; line-height: 1.8;">
+                <li>Your venue pays $2,000 upfront</li>
+                <li>We provide QR codes & NFC tags for your venue</li>
+                <li>Guestes scan to order & pay directly to you</li>
+                <li>We print & deliver magnets to your venue</li>
+                <li>Keep 100% of revenue from guest sales!</li>
+            </ol>
         </div>
-        
-        <button class="submit-btn" onclick="submitOrder()">💳 Pay & Place Order</button>
     </div>
 
     <div class="container success-message" id="success">
-        <h2>🎉 Order Confirmed!</h2>
-        <p style="margin-top: 1rem;">Thank you! We'll create your custom magnets and text you when ready.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
-            Or email your photos to: photos@protean.earth
-        </p>
+        <h2>🎉 Welcome Partner!</h2>
+        <p style="margin-top: 1rem;">We'll contact you within 24 hours to set up your venue.</p>
     </div>
 
     <footer>
@@ -164,50 +172,31 @@
     </footer>
 
     <script>
-        const VENMO_USERNAME = 'sunnydandee';
-        const CASHAPP_TAG = '$proteanEARTH';
-        
-        let selected = { size: 'square', price: 18 };
+        let selected = { size: 'square' };
         
         function selectProduct(el) {
             document.querySelectorAll('.product-option').forEach(o => o.classList.remove('selected'));
             el.classList.add('selected');
             selected.size = el.dataset.size;
-            selected.price = parseInt(el.dataset.price);
         }
         
         function submitOrder() {
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
             const venue = document.getElementById('venue').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             
-            if (!name || !phone) {
-                alert('Please enter your name and phone number');
+            if (!venue || !name || !email || !phone) {
+                alert('Please fill in all fields');
                 return;
             }
             
-            // Check if photos are selected (optional, can email later)
-            const hasPhotos = ['photo1','photo2','photo3','photo4','photo5','photo6']
-                .some(id => document.getElementById(id).files.length > 0);
-            
-            const sizeName = selected.size === 'square' ? 'Square' : 'Rectangle';
-            const note = `Wedding${sizeName}6Pack`;
-            
-            // Open payment
-            if (confirm('OK for Venmo, Cancel for CashApp')) {
-                window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${selected.price}&note=${note}Ref${phone}`, '_blank');
-            } else {
-                window.open(`https://cash.app/${CASHAPP_TAG}/${selected.price}?note=${note}`, '_blank');
-            }
-            
-            // Show success and instructions
-            document.getElementById('orderForm').style.display = 'none';
+            // In production, this would submit to a backend
+            // For now, show success and email us
             document.getElementById('success').style.display = 'block';
             
-            // Store order info for reference
-            localStorage.setItem('weddingOrder', JSON.stringify({
-                name, phone, venue, size: selected.size, price: selected.price
-            }));
+            // Scroll to success
+            document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
