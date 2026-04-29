@@ -19,6 +19,24 @@
         .hero { background: linear-gradient(135deg, #1a3a3a 0%, #0d1f1f 100%); color: #fff; text-align: center; padding: 2rem; }
         .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; }
         
+        .product-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #fff;
+            margin: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .product-showcase img {
+            width: 120px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
         .checkout { max-width: 500px; margin: 2rem auto; padding: 2rem; background: #fff; border: 1px solid #eee; }
         
         .order-summary {
@@ -74,6 +92,12 @@
     <section class="hero">
         <h1>Checkout</h1>
     </section>
+
+    <div class="product-showcase">
+        <img src="1000005139.jpg" alt="Spiral Jetty Magnet">
+        <img src="1000005144.jpg" alt="Photo Magnets">
+        <img src="1000005147.jpg" alt="Custom Prints">
+    </div>
 
     <section class="checkout">
         <div class="order-summary" id="summary">
