@@ -80,6 +80,7 @@
         }
         .product-card .venmo-btn { background: #008CFF; color: white; margin-bottom: 0.5rem; }
         .product-card .cashapp-btn { background: #FFDC00; color: black; }
+        .product-card .stripe-btn { background: #635BFF; color: white; }
         
         .info-box {
             background: #f5f4f2;
@@ -132,6 +133,7 @@
                 <div class="delivery">📦 Delivered to your door in 1 hour</div>
                 <button class="btn venmo-btn" onclick="orderExpress('square', 24)">📱 Venmo</button>
                 <button class="btn cashapp-btn" onclick="orderExpressCashApp('square', 24)">💵 CashApp</button>
+                <button class="btn stripe-btn" onclick="orderExpressStripe('square', 24)">💳 Card</button>
             </div>
             
             <div class="product-card">
@@ -141,6 +143,7 @@
                 <div class="delivery">📦 Delivered to your door in 1 hour</div>
                 <button class="btn venmo-btn" onclick="orderExpress('rect', 27)">📱 Venmo</button>
                 <button class="btn cashapp-btn" onclick="orderExpressCashApp('rect', 27)">💵 CashApp</button>
+                <button class="btn stripe-btn" onclick="orderExpressStripe('rect', 27)">💳 Card</button>
             </div>
         </div>
         
@@ -182,6 +185,11 @@
         const VENMO_USERNAME = 'sunnydandee';
         const CASHAPP_TAG = '$proteanEARTH';
         
+        const STRIPE_LINKS = {
+            'square-24': 'https://buy.stripe.com/test_9B614m8ul3aOeNHfPVes00c',
+            'rect-27': 'https://buy.stripe.com/test_9B614m8ul3aOeNHfPVes00c'
+        };
+        
         function orderExpress(size, price) {
             const phone = prompt('Enter your phone number:');
             if (!phone) return;
@@ -200,6 +208,12 @@
             const note = `Express${sizeName}6Pack`;
             
             window.open(`https://cash.app/${CASHAPP_TAG}/${price}?note=${note}`, '_blank');
+        }
+        
+        function orderExpressStripe(size, price) {
+            const key = size + '-' + price;
+            const link = STRIPE_LINKS[key] || STRIPE_LINKS['square-24'];
+            window.location.href = link;
         }
     </script>
 </body>
