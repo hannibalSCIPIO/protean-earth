@@ -68,6 +68,24 @@
         .delivery-option.selected { border-color: #c9a962; background: #f0f7ff; }
         .delivery-option input { width: auto; }
         
+        .delivery-locations {
+            background: #f5f4f2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .delivery-locations label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        .location-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .location-tag {
+            background: #c9a962;
+            color: #1a1a1a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .location-note { font-size: 0.8rem; color: #666; margin-top: 0.5rem; }
+        
         .payment-btn { display: block; width: 100%; padding: 1rem; margin: 0.75rem 0; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
         .venmo { background: #008CFF; color: white; }
         .cashapp { background: #FFDC00; color: black; }
@@ -140,6 +158,19 @@
                     <div style="font-size: 0.85rem; color: #666;">1hr delivery, Fri-Sun 6-11pm</div>
                 </div>
             </label>
+        </div>
+        
+        <div class="delivery-locations">
+            <label>📍 We Deliver To:</label>
+            <div class="location-list">
+                <span class="location-tag">Club 90</span>
+                <span class="location-tag">Jordan Commons</span>
+                <span class="location-tag">Mountain America Exposition Center</span>
+                <span class="location-tag">Wolfdog Brewing</span>
+                <span class="location-tag">Slackwater Sandy</span>
+                <span class="location-tag">Classic Fun Center</span>
+            </div>
+            <p class="location-note">Plus surrounding businesses in Sandy, UT</p>
         </div>
         
         <button type="button" class="payment-btn venmo" onclick="payWith('venmo')">📱 Pay with Venmo</button>
