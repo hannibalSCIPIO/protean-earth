@@ -148,7 +148,12 @@
             <input type="tel" id="phone" placeholder="8015551234" />
         </div>
         
-        <button class="submit-btn" onclick="submitOrder()">Submit Venue Agreement</button>
+        <div class="payment-section" style="margin-top: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">💳 Pay the $2,000 Venue Fee</h3>
+            <button class="submit-btn" style="background: #008CFF; color: white; margin-bottom: 0.5rem;" onclick="payWedding('venue')">📱 Pay with Venmo</button>
+            <button class="submit-btn" style="background: #FFDC00; color: black; margin-bottom: 0.5rem;" onclick="payWedding('cashapp')">💵 Pay with CashApp</button>
+            <button class="submit-btn" style="background: #635BFF; color: white;" onclick="payWedding('stripe')">💳 Pay with Card</button>
+        </div>
         
         <div style="margin-top: 2rem; padding: 1.5rem; background: #f5f4f2; border-radius: 8px;">
             <h3>How It Works</h3>
@@ -197,6 +202,33 @@
             
             // Scroll to success
             document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        const VENMO_USERNAME = 'sunnydandee';
+        const CASHAPP_TAG = '$proteanEARTH';
+        
+        const STRIPE_LINKS = {
+            'venue': 'https://buy.stripe.com/3cIaEXbTzfRngELatGbEA0b',
+            'allin': 'https://buy.stripe.com/eVq00jg9PcFb4W39pCbEA0c'
+        };
+        
+        function payWedding(method) {
+            const venue = document.getElementById('venue').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            
+            if (!venue || !name || !phone) {
+                alert('Please fill in all fields first');
+                return;
+            }
+            
+            if (method === 'venmo') {
+                window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=2000&note=WeddingVenue${venue}`, '_blank');
+            } else if (method === 'cashapp') {
+                window.open(`https://cash.app/${CASHAPP_TAG}/2000?note=WeddingVenue${venue}`, '_blank');
+            } else if (method === 'stripe') {
+                window.location.href = STRIPE_LINKS['venue'];
+            }
         }
     </script>
 </body>
