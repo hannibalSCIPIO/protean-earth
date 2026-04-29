@@ -84,6 +84,8 @@
             cursor: pointer;
         }
         .product-card .btn:hover { background: #c9a962; }
+        .product-card .venmo-btn { background: #008CFF; color: white; margin-bottom: 0.5rem; }
+        .product-card .cashapp-btn { background: #FFDC00; color: black; }
         
         .info-box {
             background: #f5f4f2;
@@ -136,14 +138,16 @@
                 <div class="size">Square</div>
                 <div class="qty">6 magnets (2.5" × 2.5")</div>
                 <div class="price">$18</div>
-                <button class="btn" onclick="orderVenue('square', 18)">Order Now</button>
+                <button class="btn venmo-btn" onclick="orderVenueVenmo('square', 18)">📱 Venmo</button>
+                <button class="btn cashapp-btn" onclick="orderVenueCashApp('square', 18)">💵 CashApp</button>
             </div>
             
             <div class="product-card">
                 <div class="size">Rectangle</div>
                 <div class="qty">6 magnets (2.5" × 3.5")</div>
                 <div class="price">$21</div>
-                <button class="btn" onclick="orderVenue('rect', 21)">Order Now</button>
+                <button class="btn venmo-btn" onclick="orderVenueVenmo('rect', 21)">📱 Venmo</button>
+                <button class="btn cashapp-btn" onclick="orderVenueCashApp('rect', 21)">💵 CashApp</button>
             </div>
         </div>
         
@@ -169,18 +173,24 @@
         const VENMO_USERNAME = 'sunnydandee';
         const CASHAPP_TAG = '$proteanEARTH';
         
-        function orderVenue(size, price) {
+        function orderVenueVenmo(size, price) {
             const phone = prompt('Enter your phone number:');
             if (!phone) return;
             
             const sizeName = size === 'square' ? 'Square' : 'Rectangle';
             const note = `Venue${sizeName}6Pack`;
             
-            if (confirm('OK for Venmo, Cancel for CashApp')) {
-                window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${price}&note=${note}Ref${phone}`, '_blank');
-            } else {
-                window.open(`https://cash.app/${CASHAPP_TAG}/${price}?note=${note}`, '_blank');
-            }
+            window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${price}&note=${note}Ref${phone}`, '_blank');
+        }
+        
+        function orderVenueCashApp(size, price) {
+            const phone = prompt('Enter your phone number:');
+            if (!phone) return;
+            
+            const sizeName = size === 'square' ? 'Square' : 'Rectangle';
+            const note = `Venue${sizeName}6Pack`;
+            
+            window.open(`https://cash.app/${CASHAPP_TAG}/${price}?note=${note}`, '_blank');
         }
     </script>
 </body>
