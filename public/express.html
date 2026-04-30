@@ -125,6 +125,21 @@
     </div>
 
     <div class="container">
+        <div class="venue-select" style="background: #f5f4f2; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+            <label for="venueSelect" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">📍 Select Venue for Delivery</label>
+            <select id="venueSelect" onchange="handleVenueChange()" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 0.5rem;">
+                <option value="">-- Select a venue --</option>
+                <option value="Club 90">Club 90</option>
+                <option value="Jordan Commons">Jordan Commons</option>
+                <option value="Mountain America Exposition Center">Mountain America Exposition Center</option>
+                <option value="Wolfdog Brewing">Wolfdog Brewing</option>
+                <option value="Slackwater Sandy">Slackwater Sandy</option>
+                <option value="Classic Fun Center">Classic Fun Center</option>
+                <option value="other">Other (specify below)</option>
+            </select>
+            <input type="text" id="venueOther" placeholder="Enter venue name..." style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ddd; border-radius: 8px; display: none;" />
+        </div>
+        
         <div class="products-grid">
             <div class="product-card">
                 <div class="size">Square</div>
@@ -191,29 +206,63 @@
         };
         
         function orderExpress(size, price) {
+            if (!requireVenue()) return;
+            const venue = getVenue();
             const phone = prompt('Enter your phone number:');
             if (!phone) return;
             
             const sizeName = size === 'square' ? 'Square' : 'Rectangle';
-            const note = `Express${sizeName}6Pack`;
+            const note = `Express${sizeName}6Pack@${venue}`;
             
             window.open(`https://venmo.com/${VENMO_USERNAME}?txn=pay&amount=${price}&note=${note}Ref${phone}`, '_blank');
         }
         
         function orderExpressCashApp(size, price) {
+            if (!requireVenue()) return;
+            const venue = getVenue();
             const phone = prompt('Enter your phone number:');
             if (!phone) return;
             
             const sizeName = size === 'square' ? 'Square' : 'Rectangle';
-            const note = `Express${sizeName}6Pack`;
+            const note = `Express${sizeName}6Pack@${venue}`;
             
             window.open(`https://cash.app/${CASHAPP_TAG}/${price}?note=${note}`, '_blank');
         }
         
         function orderExpressStripe(size, price) {
+            if (!requireVenue()) return;
             const key = size + '-' + price;
             const link = STRIPE_LINKS[key] || STRIPE_LINKS['square-24'];
             window.location.href = link;
+        }
+        
+        function handleVenueChange() {
+            const select = document.getElementById('venueSelect');
+            const otherInput = document.getElementById('venueOther');
+            if (select.value === 'other') {
+                otherInput.style.display = 'block';
+                otherInput.focus();
+            } else {
+                otherInput.style.display = 'none';
+            }
+        }
+        
+        function getVenue() {
+            const select = document.getElementById('venueSelect');
+            const otherInput = document.getElementById('venueOther');
+            if (select.value === 'other') {
+                return otherInput.value.trim();
+            }
+            return select.value;
+        }
+        
+        function requireVenue() {
+            const venue = getVenue();
+            if (!venue) {
+                alert('Please select a venue first');
+                return false;
+            }
+            return true;
         }
     </script>
 </body>
